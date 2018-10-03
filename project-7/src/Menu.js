@@ -10,7 +10,7 @@ class Menu extends Component {
 	render(){
 			return(
 			<div className='header'>
-			<div className='ham'
+			<div className='menu'
 			onClick={this.showHide}
 			tabindex='1'
 			onKeyPress={this.showHide}>☰</div>
