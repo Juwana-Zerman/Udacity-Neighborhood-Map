@@ -31,7 +31,7 @@ class App extends Component {
     const listIds = visibleListItems.map(item=>item.getAttribute('id'));
   }
 
-  loadMap=()=>{
+  initMap=()=>{
     loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBqKIezQ6vPrfhO0UgjsPZcD4EbpkRiSNg&callback=googleSuccess');
     window.googleSuccess = this.googleSuccess;
   }
@@ -44,7 +44,7 @@ class App extends Component {
       client_secret: '2HIXLJWVN0BUHFCSUSJZCWJF0AHQNX3TMHFO0VW5C4DF35U2',
       query: 'coffee',
       near: 'Jacksonville',
-      v: '20181003' //YYYYDDMM
+      v: '20181003' 
   }
 
 //installed axios- npm install axios //axios is similar to fetch
@@ -52,22 +52,51 @@ axios.get(endPoint + new URLSearchParams(parameters))
 .then(response => {
   this.setState({//setting the state with the data we got from the ajax call
     venues: response.data.response.groups[0].items,
-  }, this.loadMap()) //calling this.loadMap() as a callback - which gets invoked after our ajax call is successful
+  }, this.initMap()) //calling this.initMap() as a callback - which gets invoked after our ajax call is successful
 })
-.catch(err=>{
-  alert(`${fourSquareFailMsg} ${err}`)
+.catch(error=>{
+  alert(`${fourSquareFailMsg} ${error}`)
 })
 }
 
 googleSuccess=()=>{
 
   //creating a map
-   let myMap = new window.google.maps.Map(document.getElementById('map'), {
+   let theMap = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 30.332184, lng: -81.655},
       zoom: 10
     });
 
    const infoWindow = new window.google.maps.InfoWindow()
+   // Try HTML5 geolocation.
+  /* if (navigator.geolocation) {
+     navigator.geolocation.getCurrentPosition(function(position) {
+       var pos = {
+         lat: position.coords.latitude,
+         lng: position.coords.longitude
+       };
+      
+       infoWindow.setPosition(pos);
+       infoWindow.setContent('Location found.');
+       infoWindow.open(map);
+       map.setCenter(pos);
+     }, function() {
+       handleLocationError(true, infoWindow, map.getCenter());
+     });
+   } else {
+     // Browser doesn't support Geolocation
+     handleLocationError(false, infoWindow, map.getCenter());
+   };
+  }
+ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+    'Error: The Geolocation service failed.' :
+    'Error: Your browser doesn\'t support geolocation.');
+  infoWindow.open(map);
+};
+}*/
+
 
    //looping through the venues array which is inside this.state to generate markers
    this.state.venues.map(eachVenue => {
@@ -90,14 +119,16 @@ googleSuccess=()=>{
     }
     
     //creating a marker for each venue
-    const myMarker = new window.google.maps.Marker({
+    
+    const theMarker = new window.google.maps.Marker({
       position: {lat: eachVenue.venue.location.lat, lng: eachVenue.venue.location.lng},
-      map: myMap,
+      map: theMap,
       title: eachVenue.venue.name,
+
     });
 
 //adding event listener to each marker
-myMarker.addListener('click', function(e) {
+theMarker.addListener('click', function(e) {
 
   toggleBounce(this);
 
@@ -105,13 +136,14 @@ myMarker.addListener('click', function(e) {
    infoWindow.setContent(contentString)
 
   //open an infoWindow
-  infoWindow.open(myMap, myMarker);
+  infoWindow.open(theMap, theMarker);
 
 });
 
 this.setState({
-  markers: [...this.state.markers, myMarker]
+  markers: [...this.state.markers, theMarker]
 });
+
 
 });
 }
