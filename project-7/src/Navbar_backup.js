@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+/*import React, { Component } from 'react';
+//import ReactDOM from 'react-dom';
 import './App.css';
 
 class Navbar extends Component {
@@ -23,7 +23,7 @@ class Navbar extends Component {
 	    		}
     	})
     }*/
-    
+   /* 
   	}
 
 	handleSearch=(e)=>{
@@ -46,7 +46,7 @@ class Navbar extends Component {
 /*	const searchText = e.target.value;
     const newMarkers = this.props.markers.filter(marker => marker.title.indexOf(searchText))
     this.props.changeState(newMarkers);*/
-	}
+	/*}
 
 	render(){
 		return(
@@ -65,7 +65,7 @@ class Navbar extends Component {
 							onKeyPress={()=>this.handleEvent(eachVenue)}
 							id={eachVenue.venue.name}
 							>
-							<a href=('GET', "https://api.foursquare.com/v2/venues/VENUE_ID/photos")
+							<a href="#">
 							{eachVenue.venue.name}>
 							</a>
 							</li>
@@ -78,4 +78,4 @@ class Navbar extends Component {
 	}
 }
 
-export default Navbar;
+export default Navbar;*/

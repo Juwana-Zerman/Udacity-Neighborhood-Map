@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import './App.css';
 
 class Navbar extends Component {
@@ -61,7 +61,7 @@ class Navbar extends Component {
 				{ 
 				this.props.venues.map(eachVenue=>{
 					return (
-					<section id="menu-items">
+					
 						<li
 						key={eachVenue.venue.id}
 						onClick={()=>this.handleEvent(eachVenue)}
@@ -69,13 +69,12 @@ class Navbar extends Component {
 						id={eachVenue.venue.name}
 						role="menuitem"
 						>
-						<a href="https://api.foursquare.com/v2/venues/VENUE_ID/photos"
-						aria-label={eachVenue.venue.name}
-						role="menuitem">
+						<a href="#">
 						{eachVenue.venue.name}
+						
 						</a>
 						</li>
-						</section>	
+							
 						)
 		})
 	}
