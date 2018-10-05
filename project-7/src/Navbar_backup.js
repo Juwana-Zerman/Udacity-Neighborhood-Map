@@ -36,7 +36,7 @@ class Navbar extends Component {
 	    for (i = 0; i < li.length; i++) {
 	        a = li[i].getElementsByTagName("a")[0];
 	        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
+            li[i].style.display = "block";
         } else {
             li[i].style.display = "none";
 	        }
@@ -53,7 +53,7 @@ class Navbar extends Component {
 			<div id='navbar'>
 			<input type='search' id='myInput'
 			onChange={this.handleSearch}
-			placeholder="Search for Restaurants.."
+			placeholder="Filter"
 			/>
 			<ul id='myUL'>
 				{
@@ -65,8 +65,8 @@ class Navbar extends Component {
 							onKeyPress={()=>this.handleEvent(eachVenue)}
 							id={eachVenue.venue.name}
 							>
-							<a href="#">
-							{eachVenue.venue.name}
+							<a href=('GET', "https://api.foursquare.com/v2/venues/VENUE_ID/photos")
+							{eachVenue.venue.name}>
 							</a>
 							</li>
 						)

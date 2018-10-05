@@ -52,35 +52,40 @@ class Navbar extends Component {
 
 	render(){
 		return(
-			<div id='navbar' aria-role='navigation'>
+			<div id='navbar' role='navigation'>
 			<input type='search' id='myInput'
 			onChange={this.handleSearch}
-			placeholder="Search for Restaurants.."
+			placeholder="Filter.."
 			/>
-			<ul id='myUL' aria-role='list'>
-					{ 
-						this.props.venues.map(eachVenue=>{
-								return (
-									<li
-									key={eachVenue.venue.id}
-									onClick={()=>this.handleEvent(eachVenue)}
-									onKeyPress={()=>this.handleEvent(eachVenue)}
-									id={eachVenue.venue.name}
-									aria-role='link'
-									>
-									<a href="#"
-									aria-label={eachVenue.venue.name}
-									aria-role="link">
-									{eachVenue.venue.name}
-									</a>
-									</li>
-								)
-						})
-				}
-			</ul>
-			</div>
-		)
+			<ul id='myUL' role='menu'>
+				{ 
+				this.props.venues.map(eachVenue=>{
+					return (
+					<section id="menu-items">
+						<li
+						key={eachVenue.venue.id}
+						onClick={()=>this.handleEvent(eachVenue)}
+						onKeyPress={()=>this.handleEvent(eachVenue)}
+						id={eachVenue.venue.name}
+						role="menuitem"
+						>
+						<a href="https://api.foursquare.com/v2/venues/VENUE_ID/photos"
+						aria-label={eachVenue.venue.name}
+						role="menuitem">
+						{eachVenue.venue.name}
+						</a>
+						</li>
+						</section>	
+						)
+		})
 	}
+	
+	
+
+	</ul>
+	</div>
+	)
+}
 }
 
 export default Navbar;

@@ -4,6 +4,9 @@ import axios from 'axios';
 import Menu from './Menu';
 import './App.css';
 
+
+
+
 window.gm_authFailure=()=>{ 
   alert('OOPS! An Error occurred while fetching GoogleMaps API! Please try again later.');
  };
@@ -29,6 +32,7 @@ class App extends Component {
 
     const visibleListItems = listItemsArray.filter(li=>li.offsetParent!=null);
     const listIds = visibleListItems.map(item=>item.getAttribute('id'));
+    
   }
 
   initMap=()=>{
@@ -42,7 +46,7 @@ class App extends Component {
     const parameters = {
       client_id: '0HWDBVRB2JSKVNZHY1PCJE0P2GQLV2U2ZD0BYKGS2RR125FW',
       client_secret: '2HIXLJWVN0BUHFCSUSJZCWJF0AHQNX3TMHFO0VW5C4DF35U2',
-      query: 'coffee',
+      query: 'wings',
       near: 'Jacksonville',
       v: '20181003' 
   }
@@ -55,7 +59,7 @@ axios.get(endPoint + new URLSearchParams(parameters))
   }, this.initMap()) //calling this.initMap() as a callback - which gets invoked after our ajax call is successful
 })
 .catch(error=>{
-  alert(`${fourSquareFailMsg} ${error}`)
+  console.log(`${fourSquareFailMsg} ${error}`)
 })
 }
 
@@ -68,54 +72,32 @@ googleSuccess=()=>{
     });
 
    const infoWindow = new window.google.maps.InfoWindow()
-   // Try HTML5 geolocation.
-  /* if (navigator.geolocation) {
-     navigator.geolocation.getCurrentPosition(function(position) {
-       var pos = {
-         lat: position.coords.latitude,
-         lng: position.coords.longitude
-       };
-      
-       infoWindow.setPosition(pos);
-       infoWindow.setContent('Location found.');
-       infoWindow.open(map);
-       map.setCenter(pos);
-     }, function() {
-       handleLocationError(true, infoWindow, map.getCenter());
-     });
-   } else {
-     // Browser doesn't support Geolocation
-     handleLocationError(false, infoWindow, map.getCenter());
-   };
-  }
- function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-    'Error: The Geolocation service failed.' :
-    'Error: Your browser doesn\'t support geolocation.');
-  infoWindow.open(map);
-};
-}*/
-
-
+   
    //looping through the venues array which is inside this.state to generate markers
    this.state.venues.map(eachVenue => {
     console.log(eachVenue);
     const name = `${eachVenue.venue.name}`;
     const address = `${eachVenue.venue.location.formattedAddress}`;
+    
+    
 
-    var contentString = `<div>
+    let contentString = `<div>
     <img id='img'>
+    
     <h3>${name}</h3>
     <p>${address}</p>
+    
     </div>`;
 
+    
+
+
     //animate marker
-    function toggleBounce(marker) {
-      marker.setAnimation(window.google.maps.Animation.BOUNCE);
+    function toggleDrop(marker) {
+      marker.setAnimation(window.google.maps.Animation.DROP);
       setTimeout(function(){
         marker.setAnimation(null);
-      }, 2000);
+      }, 1500);
     }
     
     //creating a marker for each venue
@@ -124,32 +106,29 @@ googleSuccess=()=>{
       position: {lat: eachVenue.venue.location.lat, lng: eachVenue.venue.location.lng},
       map: theMap,
       title: eachVenue.venue.name,
+     
 
     });
 
 //adding event listener to each marker
 theMarker.addListener('click', function(e) {
 
-  toggleBounce(this);
+  toggleDrop(this);
 
   //change the content
    infoWindow.setContent(contentString)
 
   //open an infoWindow
   infoWindow.open(theMap, theMarker);
-
 });
+
 
 this.setState({
   markers: [...this.state.markers, theMarker]
 });
-
-
 });
 }
-
-
-  render() {
+render() {
     return (
     <main>
       <Navbar
