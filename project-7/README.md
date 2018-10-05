@@ -1,5 +1,8 @@
 # Neighborhood Map Project (Jax Wing Finder)
 
+## Overview
+
+The Neighborhood Map Project was built to fulfill requirements for the Udacity Front-End Developer Nanodegree. This is a single page app built using React. The app uses the Google Maps JavaScript API and FourSquare API to list restaurant locations serving wings in the Jacksonville, FL area.
 
 
 
@@ -23,6 +26,32 @@ The [FourSquare API](https://developer.foursquare.com/) was used to fetch data a
 
 * JavaScript
 
+## Start the App:
+
+* Make sure that you have Node.js installed on your local and then clone this        repository
+
+* Navigate to the cloned file and type the following command:
+
+* npm install
+
+* Then:
+
+  npm start
+
+The browser will automatically open the Neighborhood Map App. If it doesn't, visit localhost:3000
+
+## Start the App in Production Mode:
+
+* To run the App in production mode type the following command:
+
+  npm run build
+
+* Then:
+
+  python -m SimpleHTTPServer 8000
+
+  Then the App should run on port 8000.
+
 ## Resources Used
 
 Resources consulted to build this project include:
@@ -31,7 +60,7 @@ Walkthroughs by:
 
 Elharony at https://www.youtube.com/channel/UCcWSbBe_s-T_gZRnqFbtyIA
 
-Filter function from [W3Schools](https://www.w3schools.com/howto/howto_js_filter_lists.asp)
+Filter function taken from [W3Schools](https://www.w3schools.com/howto/howto_js_filter_lists.asp)
 
 
 

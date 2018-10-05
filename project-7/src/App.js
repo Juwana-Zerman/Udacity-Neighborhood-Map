@@ -35,9 +35,9 @@ class App extends Component {
     
   }
 
-  initMap=()=>{
-    loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBqKIezQ6vPrfhO0UgjsPZcD4EbpkRiSNg&callback=googleSuccess');
-    window.googleSuccess = this.googleSuccess;
+  renderMap=()=>{
+    loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBqKIezQ6vPrfhO0UgjsPZcD4EbpkRiSNg&callback=initMap');
+    window.initMap = this.initMap;
   }
 
   getVenues=()=>{
@@ -56,59 +56,54 @@ axios.get(endPoint + new URLSearchParams(parameters))
 .then(response => {
   this.setState({//setting the state with the data we got from the ajax call
     venues: response.data.response.groups[0].items,
-  }, this.initMap()) //calling this.initMap() as a callback - which gets invoked after our ajax call is successful
+  }, this.renderMap()) //calling this.initMap() as a callback - which gets invoked after our ajax call is successful
 })
 .catch(error=>{
-  console.log(`${fourSquareFailMsg} ${error}`)
+  alert(`${fourSquareFailMsg} ${error}`)
 })
 }
 
-googleSuccess=()=>{
+initMap = () =>{
 
   //creating a map
-   let theMap = new window.google.maps.Map(document.getElementById('map'), {
+   let myMap = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 30.332184, lng: -81.655},
       zoom: 10
     });
 
-   const infoWindow = new window.google.maps.InfoWindow()
+   let infoWindow = new window.google.maps.InfoWindow()
    
    //looping through the venues array which is inside this.state to generate markers
-   this.state.venues.map(eachVenue => {
+   this.state.venues.map(eachVenue) => {
     console.log(eachVenue);
     const name = `${eachVenue.venue.name}`;
     const address = `${eachVenue.venue.location.formattedAddress}`;
-    
-    
 
-    let contentString = `<div>
-    <img id='img'>
-    
+
+    const contentString = `<div>   
     <h3>${name}</h3>
     <p>${address}</p>
-    
     </div>`;
-
     
-
-
     //animate marker
-    function toggleDrop(marker) {
-      marker.setAnimation(window.google.maps.Animation.DROP);
-      setTimeout(function(){
-        marker.setAnimation(null);
-      }, 1500);
-    }
+function toggleDrop(marker) {
+  marker.setAnimation(window.google.maps.Animation.DROP);
+  setTimeout(function(){
+    marker.setAnimation(null);
+  }, 1500);
+}
     
-    //creating a marker for each venue
+//creating a marker for each venue
     
-    const theMarker = new window.google.maps.Marker({
+const theMarker = new window.google.maps.Marker({
       position: {lat: eachVenue.venue.location.lat, lng: eachVenue.venue.location.lng},
-      map: theMap,
+      map: myMap,
       title: eachVenue.venue.name,
      
 
     });
+
+
 
 //adding event listener to each marker
 theMarker.addListener('click', function(e) {
@@ -119,15 +114,17 @@ theMarker.addListener('click', function(e) {
    infoWindow.setContent(contentString)
 
   //open an infoWindow
-  infoWindow.open(theMap, theMarker);
+  infoWindow.open(myMap, theMarker);
 });
 
 
 this.setState({
   markers: [...this.state.markers, theMarker]
-});
-});
+    });
+
+  });
 }
+     
 render() {
     return (
     <main>
