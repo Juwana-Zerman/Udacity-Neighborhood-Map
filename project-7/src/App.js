@@ -61,6 +61,16 @@ axios.get(endPoint + new URLSearchParams(parameters))
 .catch(error=>{
   alert(`${fourSquareFailMsg} ${error}`)
 })
+}//installed axios- npm install axios //axios is similar to fetch
+axios.get(endPoint + new URLSearchParams(parameters))
+.then(response => {
+  this.setState({//setting the state with the data we got from the ajax call
+    venues: response.data.response.groups[0].items,
+  }, this.renderMap()) //calling this.initMap() as a callback - which gets invoked after our ajax call is successful
+})
+.catch(error=>{
+  alert(`${fourSquareFailMsg} ${error}`)
+})
 }
 
 initMap = () =>{
@@ -84,7 +94,7 @@ initMap = () =>{
     <h3>${name}</h3>
     <p>${address}</p>
     </div>`;
-    
+   } 
     //animate marker
 function toggleDrop(marker) {
   marker.setAnimation(window.google.maps.Animation.DROP);
@@ -122,8 +132,8 @@ this.setState({
   markers: [...this.state.markers, theMarker]
     });
 
-  });
-}
+  };
+
      
 render() {
     return (
