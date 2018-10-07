@@ -61,7 +61,7 @@ axios.get(endPoint + new URLSearchParams(parameters))
 .catch(error=>{
   alert(`${fourSquareFailMsg} ${error}`)
 })
-}//installed axios- npm install axios //axios is similar to fetch
+//installed axios- npm install axios //axios is similar to fetch
 axios.get(endPoint + new URLSearchParams(parameters))
 .then(response => {
   this.setState({//setting the state with the data we got from the ajax call
@@ -81,20 +81,22 @@ initMap = () =>{
       zoom: 10
     });
 
-   let infoWindow = new window.google.maps.InfoWindow()
+   let infoWindow = new window.google.maps.InfoWindow({ maxWidth: 280 });
    
    //looping through the venues array which is inside this.state to generate markers
-   this.state.venues.map(eachVenue) => {
+   this.state.venues.map(eachVenue => {
     console.log(eachVenue);
-    const name = `${eachVenue.venue.name}`;
-    const address = `${eachVenue.venue.location.formattedAddress}`;
+    //const name = `${eachVenue.venue.name}`;
+    //const address = `${eachVenue.venue.location.formattedAddress}`;
+    
 
-
-    const contentString = `<div>   
-    <h3>${name}</h3>
-    <p>${address}</p>
+    const contentString = `<div id="info" tabIndex="0">   
+    <h3>${eachVenue.venue.name}</h3>
+    <p>${eachVenue.venue.location.formattedAddress[0]}<br>
+    ${eachVenue.venue.location.formattedAddress[1]}
+    </p>
     </div>`;
-   } 
+   
     //animate marker
 function toggleDrop(marker) {
   marker.setAnimation(window.google.maps.Animation.DROP);
@@ -132,8 +134,8 @@ this.setState({
   markers: [...this.state.markers, theMarker]
     });
 
-  };
-
+  });
+}
      
 render() {
     return (
