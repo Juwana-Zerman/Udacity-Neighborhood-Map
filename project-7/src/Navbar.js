@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-//import ReactDOM from 'react-dom';
+/*import React, { Component } from 'react';
+//import * as ReactDOM from 'react-dom';
 import './App.css';
 
 class Navbar extends Component {
@@ -15,8 +15,9 @@ class Navbar extends Component {
 
     const visibleListItems = listItemsArray.filter(li=>li.offsetParent!=null);
     
-    const listIds = visibleListItems.map(item=>item.getAttribute('id'));  
-    
+	const listIds = visibleListItems.map(item=>item.getAttribute('id'));  
+	
+	    
     this.props.markers.forEach(marker=>{
     	let name=marker.title.toLowerCase()
     	if(!name.includes(e)){	
@@ -48,7 +49,7 @@ class Navbar extends Component {
 /*	const searchText = e.target.value;
     const newMarkers = this.props.markers.filter(marker => marker.title.indexOf(searchText))
     this.props.changeState(newMarkers);*/
-	}
+	/*}
 
 	render(){
 		return(
@@ -67,11 +68,11 @@ class Navbar extends Component {
 						onClick={()=>this.handleEvent(eachVenue)}
 						onKeyPress={()=>this.handleEvent(eachVenue)}
 						id={eachVenue.venue.name}
-						role="menuitem"
+						aria-role="link"
 						>
-						<a href="#">
+						<a href="#" aria-label={eachVenue.venue.name}
+						aria-role="link">
 						{eachVenue.venue.name}
-						
 						</a>
 						</li>
 							
@@ -79,12 +80,10 @@ class Navbar extends Component {
 		})
 	}
 	
-	
-
 	</ul>
 	</div>
 	)
 }
 }
 
-export default Navbar;
+export default Navbar;*/

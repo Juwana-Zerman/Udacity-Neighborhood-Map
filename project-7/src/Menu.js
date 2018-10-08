@@ -15,7 +15,7 @@ class Menu extends Component {
 				
 			<div className='menu'
 			onClick={this.showHide}
-			tabindex='1'
+			tabIndex='1'
 			onKeyPress={this.showHide}>☰</div>
 			
 			
