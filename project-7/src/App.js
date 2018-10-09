@@ -3,6 +3,8 @@ import './App.css';
 import axios from 'axios'
 import Navbar from './Navbar_backup'
 import Menu from './Menu'
+import {mapCustomStyle} from './mapCustomStyle'
+//import restaurant_icon from './restaurant_icon.svg'
 
 window.gm_authFailure=()=>{ 
  alert('OOPS! An Error occurred while fetching GoogleMaps API! Please try again later.');
@@ -63,8 +65,8 @@ class App extends Component {
       //creating a map
        let myMap = new window.google.maps.Map(document.getElementById('map'), {
           center: {lat: 30.332184, lng: -81.655},
-          zoom: 10
-       
+          zoom: 10,
+          styles: mapCustomStyle
         });
       
        const infoWindow = new window.google.maps.InfoWindow();
@@ -101,6 +103,7 @@ class App extends Component {
           position: {lat: eachVenue.venue.location.lat, lng: eachVenue.venue.location.lng},
           map: myMap,
           title: eachVenue.venue.name,
+          
         });
 
         //adding event listener to each marker
