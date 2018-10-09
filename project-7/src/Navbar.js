@@ -1,5 +1,5 @@
-/*import React, { Component } from 'react';
-//import * as ReactDOM from 'react-dom';
+import React, { Component } from 'react';
+//import ReactDOM from 'react-dom';
 import './App.css';
 
 class Navbar extends Component {
@@ -14,23 +14,30 @@ class Navbar extends Component {
     const listItemsArray = Array.from(listItems);
 
     const visibleListItems = listItemsArray.filter(li=>li.offsetParent!=null);
-    
-	const listIds = visibleListItems.map(item=>item.getAttribute('id'));  
+    const listIds = visibleListItems.map(item=>item.getAttribute('id'));
 	
-	    
-    this.props.markers.forEach(marker=>{
+	for(let i=0; i<listIds.length; i++){
+	this.props.markers.forEach(marker=>{
     	let name=marker.title.toLowerCase()
     	if(!name.includes(e)){	
     		marker.setVisible(false)
     	}
     	else {
     		marker.setVisible(true)
-    	}
-    })
+    /*for(let i=0; i<listIds.length; i++){
+    	this.props.markers.forEach((marker)=>{
+	    		if(marker.title!==listIds[i]){
+	    			marker.setVisible(false);
+	    		} else {
+					marker.setVisible(true);*/
+				}
+    	})
+    }
+   
   	}
 
-	handleSearch=(e)=>{	
-		var input, filter, ul, li, a, i;
+	handleSearch=(e)=>{
+		let input, filter, ul, li, a, i;
 	    input = document.getElementById("myInput");
 	    filter = input.value.toUpperCase();
 	    ul = document.getElementById("myUL");
@@ -46,44 +53,39 @@ class Navbar extends Component {
 	    }
 	   	this.updateMarkers(e.target.value);
 
-/*	const searchText = e.target.value;
+	/*const searchText = e.target.value;
     const newMarkers = this.props.markers.filter(marker => marker.title.indexOf(searchText))
     this.props.changeState(newMarkers);*/
-	/*}
+	}
 
 	render(){
 		return(
-			<div id='navbar' role='navigation'>
+			<div id='navbar'>
 			<input type='search' id='myInput'
 			onChange={this.handleSearch}
-			placeholder="Filter.."
+			placeholder="Filter..."
 			/>
-			<ul id='myUL' role='menu'>
-				{ 
-				this.props.venues.map(eachVenue=>{
-					return (
-					
-						<li
-						key={eachVenue.venue.id}
-						onClick={()=>this.handleEvent(eachVenue)}
-						onKeyPress={()=>this.handleEvent(eachVenue)}
-						id={eachVenue.venue.name}
-						aria-role="link"
-						>
-						<a href="#" aria-label={eachVenue.venue.name}
-						aria-role="link">
-						{eachVenue.venue.name}
-						</a>
-						</li>
-							
+			<ul id='myUL'>
+				{
+					this.props.venues.map(eachVenue=>{
+						return (
+							<li
+							key={eachVenue.venue.id}
+							onClick={()=>this.handleEvent(eachVenue)}
+							onKeyPress={()=>this.handleEvent(eachVenue)}
+							id={eachVenue.venue.name}
+							>
+							<a href="#">
+							{eachVenue.venue.name}
+							</a>
+							</li>
 						)
-		})
+					})
+				}
+			</ul>
+			</div>
+		)
 	}
-	
-	</ul>
-	</div>
-	)
-}
 }
 
-export default Navbar;*/
+export default Navbar;

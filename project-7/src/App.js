@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios'
-import Navbar from './Navbar_backup'
+import Navbar from './Navbar'
 import Menu from './Menu'
 import {mapCustomStyle} from './mapCustomStyle'
 //import restaurant_icon from './restaurant_icon.svg'
