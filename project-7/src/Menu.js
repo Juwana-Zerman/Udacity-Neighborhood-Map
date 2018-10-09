@@ -11,12 +11,12 @@ class Menu extends Component {
 		return(
 			<div className='header'>
 			
-			<h2 className='jax'>Jax Wing Finder</h2>	
+				<h2 className='jax'>Jax Wing Finder</h2>	
 				
 			<div className='menu'
-			onClick={this.showHide}
-			tabIndex='1'
-			onKeyPress={this.showHide}>☰</div>
+				onClick={this.showHide}
+				tabIndex='1'
+				onKeyPress={this.showHide}>☰</div>
 			
 			
 			</div>
