@@ -4,6 +4,7 @@ import axios from 'axios'
 import Navbar from './Navbar'
 import Menu from './Menu'
 import {mapCustomStyle} from './mapCustomStyle'
+
 //import restaurant_icon from './restaurant_icon.svg'
 
 window.gm_authFailure=()=>{ 
@@ -111,7 +112,7 @@ fetch(endPoint).then(response => response.json()).then(parsedJSON => {
           position: {lat: theVenue.venue.location.lat, lng: theVenue.venue.location.lng},
           map: theMap,
           title: theVenue.venue.name,
-         
+          
         });
       
         //adding event listener to each marker

@@ -61,11 +61,11 @@ class Navbar extends Component {
 	render(){
 		return(
 			<div id='navbar'>
-			<input type='search' id='myInput'
+			<input type='search' id='myInput' aria-label="Filter location by name" tabIndex="0"
 			onChange={this.handleSearch}
 			placeholder="Filter..."
 			/>
-			<ul id='myUL'>
+			<ul id='myUL' aria-label="Location List">
 				{
 					this.props.venues.map(eachVenue=>{
 						return (
