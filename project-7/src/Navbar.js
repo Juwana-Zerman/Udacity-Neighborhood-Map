@@ -30,17 +30,17 @@ class Navbar extends Component {
 
 	handleSearch=(e)=>{
 		let input, filter, ul, li, a, i;
-	    input = document.getElementById("listInput");
+	    input = document.getElementById('listInput');
 	    filter = input.value.toUpperCase();
-	    ul = document.getElementById("UL");
-	    li = ul.getElementsByTagName("li");
+	    ul = document.getElementById('UL');
+	    li = ul.getElementsByTagName('li');
 
 	    for (i = 0; i < li.length; i++) {
-	        a = li[i].getElementsByTagName("a")[0];
+	        a = li[i].getElementsByTagName('a')[0];
 	        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
+            li[i].style.display = '';
         } else {
-            li[i].style.display = "none";
+            li[i].style.display = 'none';
 	        }
 	    }
 	   	this.updateTheMarkers(e.target.value);
@@ -49,11 +49,11 @@ class Navbar extends Component {
 	render(){
 		return(
 			<div id='navbar'>
-			<input type='search' id='listInput' aria-label="Filter location by name" tabIndex="0"
+			<input type='search' id='listInput' aria-label='Filter location by name' tabIndex='0'
 			onChange={this.handleSearch}
-			placeholder="Filter..."
+			placeholder='Filter...'
 			/>
-			<ul id='UL' aria-label="Venue List">
+			<ul id='UL' aria-label='Venue List'>
 				{
 					this.props.venues.map(eachVenue=>{
 						return (
@@ -63,7 +63,7 @@ class Navbar extends Component {
 							onKeyPress={()=>this.handleEvent(eachVenue)}
 							id={eachVenue.venue.name}
 							>
-							<a href="#">
+							<a href='#'>
 							{eachVenue.venue.name}
 							</a>
 							</li>
