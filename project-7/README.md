@@ -5,7 +5,7 @@
 The Neighborhood Map Project was built to fulfill requirements for the Udacity Front-End Developer Nanodegree. This is a single page app built using React. The app uses the Google Maps JavaScript API and FourSquare API to list restaurant locations serving wings in the Jacksonville, FL area.
 
 
-![jaxscreenshot](https://user-images.githubusercontent.com/38802201/46776626-6ab53f00-ccda-11e8-9310-4a842b19aaf2.png)
+![jaxscreenshot](https://user-images.githubusercontent.com/38802201/46776723-eadba480-ccda-11e8-956f-f952542f273f.png)
 
 
 ## Development Tools
