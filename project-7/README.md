@@ -16,7 +16,7 @@ Google Maps was implemented using the [Google Maps JavaScript API](https://devel
 
 The [FourSquare API](https://developer.foursquare.com/) was used to fetch data about restaurant locations
 
-[Axios](https://github.com/axios/axios) was used to fetch data from the [FourSquare API](https://developer.foursquare.com/) was used to fetch data about restaurant locations
+[Axios](https://github.com/axios/axios) was used to fetch data from the [FourSquare API](https://developer.foursquare.com/) about restaurant locations
 
 ### Other Development Tools 
 
