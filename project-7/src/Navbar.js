@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import ReactDOM from 'react-dom';
 import './App.css';
 
 class Navbar extends Component {
@@ -77,4 +76,4 @@ class Navbar extends Component {
 	}
 }
 
-export default Navbar;
+export default Navbar
