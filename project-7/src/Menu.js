@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import ReactDOM from 'react-dom';
+
 
 class Menu extends Component {	
 	showHide=()=>{
@@ -10,15 +10,11 @@ class Menu extends Component {
 	render(){
 		return(
 			<div className='header'>
-			
 				<h2 className='jax'>Jax Wing Finder</h2>	
-				
 			<div className='menu'
 				onClick={this.showHide}
 				tabIndex='1'
 				onKeyPress={this.showHide}>☰</div>
-			
-			
 			</div>
 		)
 	}

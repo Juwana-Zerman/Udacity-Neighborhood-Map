@@ -5,14 +5,13 @@ import Navbar from './Navbar'
 import Menu from './Menu'
 import {mapCustomStyle} from './mapCustomStyle'
 
-//import restaurant_icon from './restaurant_icon.svg'
-
+// Google maps api failure variable
 window.gm_authFailure=()=>{ 
- alert('OOPS! An Error occurred while fetching GoogleMaps API! Please try again later.');
+ alert('A GoogleMaps error occurred! Please try again later.');
 };
 
-//variable to handle api failure
-const fourSquareFailMsg = 'OOPS! An Error occurred while fetching data from FourSquare API! Please try again later.';
+// FourSquare api failure variable
+const fourSquareFailure = 'An error occurred fetching information from FourSquare! Please try again later.';
 
 class App extends Component {
   state = {
@@ -20,26 +19,26 @@ class App extends Component {
     markers: []
   }
 
-  //do this right after the component is added to the DOM
+  //invoke after the component is added to the DOM
   componentDidMount(){
-    this.getVenues();//invoking getVenues function
+    this.getTheVenues();
   }
 
-  updateTheMarkers(){
-    const listItems = document.getElementsByTagName('li');
-    const listItemsArray = Array.from(listItems);
+  updateTheMarkers() {
+    const venueItems = document.getElementsByTagName('li');
+    const venueItemsArray = Array.from(venueItems);
 
-    const visibleListItems = listItemsArray.filter(li=>li.offsetParent!=null);
-    const listIds = visibleListItems.map(item=>item.getAttribute('id'));
+    const visibleVenueItems = venueItemsArray.filter(li=>li.offsetParent!=null);
+     visibleVenueItems.map(item=>item.getAttribute('id'));
   }
 
   loadTheMap=()=>{
     loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBqKIezQ6vPrfhO0UgjsPZcD4EbpkRiSNg&callback=initMap');
     window.initMap = this.initMap;
   }
-
-  getVenues=()=>{
-    //getting information from foursquare Api
+  
+  getTheVenues=()=>{
+    // retrieves information from foursquare Api
     const endPoint = 'https://api.foursquare.com/v2/venues/explore?';
     const parameters = {
       client_id: '0HWDBVRB2JSKVNZHY1PCJE0P2GQLV2U2ZD0BYKGS2RR125FW',
@@ -48,25 +47,8 @@ class App extends Component {
       near: 'Jacksonville',
       v: '20181003' 
     }
- /*  
-// Creates the full URL
-const endPoint = venueRequest + new URLSearchParams(parameters)
-
-fetch(endPoint).then(response => response.json()).then(parsedJSON => {
-  console.log(parsedJSON)
-  this.props.addVenues(parsedJSON.response.groups[0].items)
-  this.setState({
-    venues: parsedJSON.response.groups[0].items
-  },
-  // loads and initiates the map.
-  this.loadInitMap())
-}).catch(error => {console.log('Foursquare had an error! ', error)
-  alert('Foursquare API failed to load. Please check your internet connection and refresh the page. ', error)});
-}
-}*/
-
-
-    //installed axios- npm install axios //axios is similar to fetch
+  
+    //used axios which is similar to fetch
     axios.get(endPoint + new URLSearchParams(parameters))
     .then(response => {
       this.setState({//setting the state with the data we got from the ajax call
@@ -74,10 +56,10 @@ fetch(endPoint).then(response => response.json()).then(parsedJSON => {
       }, this.loadTheMap()) //calling this.loadMap() as a callback - which gets invoked after our ajax call is successful
     })
     .catch(err=>{
-      alert(`${fourSquareFailMsg} ${err}`)
+      alert(`${fourSquareFailure} ${err}`)
     })
   }
-
+  
   initMap=()=>{
 
       //creating a map
@@ -89,52 +71,48 @@ fetch(endPoint).then(response => response.json()).then(parsedJSON => {
       
        const infoWindow = new window.google.maps.InfoWindow();
 
-       //looping through the venues array which is inside this.state to generate markers
+       //loop through venues array to generate markers
        this.state.venues.map(theVenue => {
         console.log(theVenue);
               
-        const contentString = `<div id="info" tabIndex="0">   
+        const contentString = `<div id="content-info" tabIndex="0">   
         <h3>${theVenue.venue.name}</h3>
         <p>${theVenue.venue.location.formattedAddress[0]}<br>
         ${theVenue.venue.location.formattedAddress[1]}</p>
         </div>`;
-       
-        //animate marker
+        
+        //animate markers with DROP
         function toggleBounce(marker) {
           marker.setAnimation(window.google.maps.Animation.DROP);
           setTimeout(function(){
             marker.setAnimation(null);
           }, 1500);
         }
-       
-        //creating a marker for each venue
+      
+        //create markers for the venues
         const theMarker = new window.google.maps.Marker({
-          position: {lat: theVenue.venue.location.lat, lng: theVenue.venue.location.lng},
+          position: {lat: theVenue.venue.location.lat,
+          lng: theVenue.venue.location.lng},
           map: theMap,
           title: theVenue.venue.name,
-          
         });
       
-        //adding event listener to each marker
+        //event listener for each marker
         theMarker.addListener('click', function(e) {
-
           toggleBounce(this);
 
-          //change the content
+          //set infoWindow content
            infoWindow.setContent(contentString)
 
-          //open an infoWindow
+          //open the infoWindow
           infoWindow.open(theMap, theMarker)
-
         });
       
         this.setState({
           markers: [...this.state.markers, theMarker]
        });
-
       });
     }
-
   render() {
     return (
       <main>
@@ -161,4 +139,4 @@ function loadScript(url){
   index.parentNode.insertBefore(script, index);//parent.parentNode.insertBefore(child, parent);
 }
 
-export default App;
+export default App
