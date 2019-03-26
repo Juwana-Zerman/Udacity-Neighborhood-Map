@@ -7,6 +7,8 @@ The Neighborhood Map Project was built to fulfill requirements for the Udacity F
 
 ![jaxscreenshot](https://user-images.githubusercontent.com/38802201/46776723-eadba480-ccda-11e8-956f-f952542f273f.png)
 
+## [View Live Demo](https://jzerman2018.github.io/Udacity-Neighborhood-Map/)
+
 
 ## Development Tools
 
