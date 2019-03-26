@@ -5,6 +5,7 @@ import Navbar from './Navbar'
 import Menu from './Menu'
 import {mapCustomStyle} from './mapCustomStyle'
 
+
 // Google maps api failure variable
 window.gm_authFailure=()=>{ 
  alert('A GoogleMaps error occurred! Please try again later.');
