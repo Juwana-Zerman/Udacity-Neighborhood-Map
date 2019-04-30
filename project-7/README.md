@@ -1,5 +1,7 @@
 # Neighborhood Map Project (Jax Wing Finder)
 
+## This project was updated to the jax-wing-finder repository
+
 ## Overview
 
 The Neighborhood Map Project was built to fulfill requirements for the Udacity Front-End Developer Nanodegree. This is a single page app built using React. The app uses the Google Maps JavaScript API and FourSquare API to list restaurant locations serving wings in the Jacksonville, FL area.
@@ -7,7 +9,7 @@ The Neighborhood Map Project was built to fulfill requirements for the Udacity F
 
 ![jaxscreenshot](https://user-images.githubusercontent.com/38802201/46776723-eadba480-ccda-11e8-956f-f952542f273f.png)
 
-## [View Live Demo](https://llrzxywlxz.codesandbox.io/)
+
 
 
 ## Development Tools
