@@ -1,0 +1,24 @@
+{
+  "name": "udacity-neighborhood-map",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "lodash.template": "^4.5.0",
+    "sw-precache-webpack-plugin": "^0.11.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JZerman2018/Udacity-Neighborhood-Map.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JZerman2018/Udacity-Neighborhood-Map/issues"
+  },
+  "homepage": "https://github.com/JZerman2018/Udacity-Neighborhood-Map#readme"
+}
