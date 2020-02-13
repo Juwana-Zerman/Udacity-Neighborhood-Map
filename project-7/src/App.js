@@ -7,7 +7,7 @@ import {mapCustomStyle} from './mapCustomStyle'
 
 
 // Google maps api failure variable
-window.gm_authFailure=()=>{ 
+window.gm_authFailure=()=>{
  alert('A GoogleMaps error occurred! Please try again later.');
 };
 
@@ -31,10 +31,10 @@ updateTheMarkers() {
   }
 
 loadTheMap=()=>{
-    loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBqKIezQ6vPrfhO0UgjsPZcD4EbpkRiSNg&callback=initMap');
+    loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyAzJkkNk6Ir5rSt6cQPgGqibkUeseAKhFo&callback=initMap');
     window.initMap = this.initMap;
   }
-  
+
 getTheVenues=()=>{
   // retrieves information from foursquare Api
   const endPoint = 'https://api.foursquare.com/v2/venues/explore?';
@@ -43,9 +43,9 @@ getTheVenues=()=>{
     client_secret: '2HIXLJWVN0BUHFCSUSJZCWJF0AHQNX3TMHFO0VW5C4DF35U2',
     query: 'wings',
     near: 'Jacksonville',
-    v: '20181003' 
+    v: '20181003'
    }
-  
+
    //used axios which is similar to fetch
     axios.get(endPoint + new URLSearchParams(parameters))
     .then(response => {
@@ -58,7 +58,7 @@ getTheVenues=()=>{
       console.log('fetching problem ' + error)
     })
   }
-  
+
 initMap=()=>{
 
     //creating a map
@@ -67,19 +67,19 @@ initMap=()=>{
       zoom: 10,
       styles: mapCustomStyle
      });
-      
+
     const infoWindow = new window.google.maps.InfoWindow();
 
     //loop through venues array to generate markers
        this.state.venues.map(theVenue => {
        console.log(theVenue);
-              
-    const contentString = `<div id="content-info" tabIndex="0">   
+
+    const contentString = `<div id="content-info" tabIndex="0">
       <h3>${theVenue.venue.name}</h3>
       <p>${theVenue.venue.location.formattedAddress[0]}<br>
       ${theVenue.venue.location.formattedAddress[1]}</p>
       </div>`;
-       
+
     //animate markers with DROP
 function toggleBounce(marker) {
     marker.setAnimation(window.google.maps.Animation.DROP);
@@ -87,7 +87,7 @@ function toggleBounce(marker) {
     marker.setAnimation(null);
    }, 1500);
   }
-      
+
     //create markers for the venues
     const theMarker = new window.google.maps.Marker({
       position: {lat: theVenue.venue.location.lat,
@@ -95,7 +95,7 @@ function toggleBounce(marker) {
       map: theMap,
       title: theVenue.venue.name,
     });
-      
+
     //event listener for each marker
       theMarker.addListener('click', function(e) {
       toggleBounce(this);
@@ -106,7 +106,7 @@ function toggleBounce(marker) {
     //open the infoWindow
       infoWindow.open(theMap, theMarker)
      });
-      
+
       this.setState({
         markers: [...this.state.markers, theMarker]
        });
