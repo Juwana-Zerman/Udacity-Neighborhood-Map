@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.21.1",
     "lodash.template": "^4.5.0"
   },
   "devDependencies": {
